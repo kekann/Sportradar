@@ -1,4 +1,4 @@
-const events = require("./JSON/BE_data.json");
+const events = require("./JSON/BE_data.json") as any[];
 const myEvents = events["Events"];
 
 function getResultIndicatorString(highestProbResult: string): string {
@@ -28,7 +28,7 @@ function formatResultsToDisplay(arrayOfEvents, numberOfResultsToFormat: number):
     return formatedResults;
 }
 
-function findMostLikelyResults(eventList, numberOfResultsToReturn: number) {
+function findMostLikelyResults(eventList, numberOfResultsToReturn: number):string {
     if(numberOfResultsToReturn<=0) return "You should pick at least one result";
     eventList.sort(function compareFn(a, b) {
         const aHigh = Math.max(a.probability_away_team_winner, a.probability_draw, a.probability_home_team_winner);
@@ -41,4 +41,24 @@ function findMostLikelyResults(eventList, numberOfResultsToReturn: number) {
     return tempFormated;
 }
 console.log(findMostLikelyResults(myEvents, 10));
+
+function getUniqueCompetitors(events: any[]) {
+    let competitors = new Set<string>();
+    for (let i = 0; i < events.length; i++) {
+        for (let j = 0; j < events[i].competitors.length; j++) {
+            competitors.add(events[i].competitors[j].name);
+        }
+    }
+    return competitors;
+}
+const uniqueCompetitorsSet = getUniqueCompetitors(myEvents);
+
+function sortSet(set: Set<string>): Set<string> {
+    let sortedArray = Array.from(set).sort();
+    return new Set(sortedArray);
+}
+console.log(sortSet(uniqueCompetitorsSet));
+
+
+
 

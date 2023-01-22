@@ -48,3 +48,18 @@ function findMostLikelyResults(eventList, numberOfResultsToReturn) {
     return tempFormated;
 }
 console.log(findMostLikelyResults(myEvents, 10));
+function getUniqueCompetitors(events) {
+    var competitors = new Set();
+    for (var i = 0; i < events.length; i++) {
+        for (var j = 0; j < events[i].competitors.length; j++) {
+            competitors.add(events[i].competitors[j].name);
+        }
+    }
+    return competitors;
+}
+var uniqueCompetitorsSet = getUniqueCompetitors(myEvents);
+function sortSet(set) {
+    var sortedArray = Array.from(set).sort();
+    return new Set(sortedArray);
+}
+console.log(sortSet(uniqueCompetitorsSet));
