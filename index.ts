@@ -30,6 +30,7 @@ function formatResultsToDisplay(arrayOfEvents, numberOfResultsToFormat: number):
 
 export function findMostLikelyResults(eventList, numberOfResultsToReturn: number):string {
     if(numberOfResultsToReturn<=0) return "You should pick at least one result";
+    if(numberOfResultsToReturn>=eventList.length) numberOfResultsToReturn = eventList.length;
     eventList.sort(function compareFn(a, b) {
         const aHigh = Math.max(a.probability_away_team_winner, a.probability_draw, a.probability_home_team_winner);
         const bHigh = Math.max(b.probability_away_team_winner, b.probability_draw, b.probability_home_team_winner);
