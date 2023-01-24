@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../../dist/index");
+const index_js_1 = require("../../dist/index.js");
 describe('findMostLikelyResults', () => {
     it('should return an error message if numberOfResultsToReturn is less than 1', () => {
-        const result = (0, index_1.findMostLikelyResults)([], 0);
+        const result = (0, index_js_1.findMostLikelyResults)([], 0);
         expect(result).toBe('You should pick at least one result');
     });
     it('should return a string of formatted results', () => {
@@ -27,7 +27,7 @@ describe('findMostLikelyResults', () => {
                 probability_draw: 0.1,
             },
         ];
-        const result = (0, index_1.findMostLikelyResults)(eventList, 2);
+        const result = (0, index_js_1.findMostLikelyResults)(eventList, 2);
         expect(typeof result).toBe('string');
         expect(result.length).toBeGreaterThan(0);
     });
@@ -39,7 +39,7 @@ describe('getUniqueCompetitors', () => {
             { "competitors": [{ "name": 'Team B' }, { "name": 'Team C' }] },
             { "competitors": [{ "name": 'Team A' }, { "name": 'Team C' }] }
         ];
-        const result = (0, index_1.getUniqueCompetitors)(duplicatedCompetitorsInEvents);
+        const result = (0, index_js_1.getUniqueCompetitors)(duplicatedCompetitorsInEvents);
         //set should guarantee unique results
         expect(result.size).toBe(3);
     });
@@ -51,7 +51,7 @@ describe('sortSet', () => {
         unsortedSet.add('Team F');
         unsortedSet.add('Team A');
         unsortedSet.add('Team B');
-        const result = [...(0, index_1.sortSet)(unsortedSet)];
+        const result = [...(0, index_js_1.sortSet)(unsortedSet)];
         expect(result[0]).toBe('Team A');
         expect(result[3]).toBe('Team F');
     });

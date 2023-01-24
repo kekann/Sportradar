@@ -1,18 +1,19 @@
-import {findMostLikelyResults, getUniqueCompetitors, sortSet, myEvents} from '../src/index'; 
+import {findMostLikelyResults, getUniqueCompetitors, sortSet, myEvents} from '../dist/index'; 
 import express from "express";
 const app = express()
 
-app.get('/mostLikelyResults/:numberOfResultsToReturn', (req, res) => {
+app.get('/mostlikelyresults/:numberOfResultsToReturn', (req, res) => {
     const numberOfResultsToReturn = req.params.numberOfResultsToReturn;
-    res.send(findMostLikelyResults(myEvents, numberOfResultsToReturn))
-})
+    const result = findMostLikelyResults(myEvents, numberOfResultsToReturn);
+    res.status(200).json(result);
+});
 
-app.get('/uniqueCompetitors', (req, res) => {
+app.get('/uniquecompetitors', (req, res) => {
     const uniqueCompetitorsSet = getUniqueCompetitors(myEvents);
     const sortedUniqueCompetitorsSet = sortSet(uniqueCompetitorsSet)
-    res.send(sortedUniqueCompetitorsSet)
-})
+    res.status(200).json(sortedUniqueCompetitorsSet);
+});
 
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000')
-})
+});
