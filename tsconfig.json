@@ -4,6 +4,8 @@
       "target": "es6",
       "lib": [ "es6", "DOM" ],
       "sourceMap": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
       "resolveJsonModule": true,
       "esModuleInterop": true
       

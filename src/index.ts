@@ -1,5 +1,5 @@
-const events = require("./JSON/BE_data.json") as any[];
-export const myEvents = events["Events"];
+const events = require("../src/BE_data.json") as any[];
+export const myEvents = events["Events"]; 
 
 function getResultIndicatorString(highestProbResult: string): string {
     switch (highestProbResult) {
@@ -23,7 +23,7 @@ function formatResultsToDisplay(arrayOfEvents, numberOfResultsToFormat: number):
         let stadion = "Venue: " + arrayOfEvents[i].venue.name + "\n";
         let highestProbability = Math.max(arrayOfEvents[i].probability_away_team_winner, arrayOfEvents[i].probability_draw, arrayOfEvents[i].probability_home_team_winner);
         let highestProbResult = Object.entries(arrayOfEvents[i]).find(([key, value]) => value === highestProbability)[0];
-        formatedResults += "Start date: " + startDate.toLocaleString() + '\n' + competitorA + competitorB + stadion + "Highest probable result : " + getResultIndicatorString(highestProbResult) + " (" + highestProbability + ")\n";
+        formatedResults += "Start date:" + startDate.toLocaleString() + '\n' + competitorA + competitorB + stadion + "Highest probable result : " + getResultIndicatorString(highestProbResult) + " (" + highestProbability + ")\n";
     };
     return formatedResults;
 }

@@ -1,4 +1,4 @@
-import {findMostLikelyResults, getUniqueCompetitors, sortSet, myEvents} from './index.js';
+import {findMostLikelyResults, getUniqueCompetitors, sortSet, myEvents} from '../src/index'; 
 import express from "express";
 const app = express()
 

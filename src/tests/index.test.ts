@@ -1,4 +1,4 @@
-import { findMostLikelyResults, getUniqueCompetitors, sortSet } from './index';
+import { findMostLikelyResults, getUniqueCompetitors, sortSet } from '../../dist/index.js';
 
 describe('findMostLikelyResults', () => {
   it('should return an error message if numberOfResultsToReturn is less than 1', () => {
