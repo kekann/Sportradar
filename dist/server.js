@@ -8,11 +8,16 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 app.get('/mostlikelyresults/:numberOfResultsToReturn', (req, res) => {
     const numberOfResultsToReturn = req.params.numberOfResultsToReturn;
-    const result = (0, index_1.findMostLikelyResults)(index_1.myEvents, numberOfResultsToReturn);
-    res.status(200).json(result);
+    if (!isNaN(numberOfResultsToReturn)) {
+        const result = (0, index_1.findMostLikelyResults)(index_1.myEvents, numberOfResultsToReturn);
+        res.status(200).json(result);
+    }
+    else {
+        res.status(502).json({ error: 'Bad Gateway', message: 'Invalid input, numberOfResultsToReturn should be a number' });
+    }
 });
 app.get('/uniquecompetitors', (req, res) => {
-    const uniqueCompetitorsSet = (0, index_1.getUniqueCompetitors)(index_1.myEvents);
+    const uniqueCompetitorsSet = req.getUniqueCompetitors(index_1.myEvents);
     const sortedUniqueCompetitorsSet = (0, index_1.sortSet)(uniqueCompetitorsSet);
     res.status(200).json(sortedUniqueCompetitorsSet);
 });
