@@ -62,5 +62,3 @@ export function sortSet(set: Set<string>): Set<string> {
 console.log(sortSet(uniqueCompetitorsSet));
 
 
-
-

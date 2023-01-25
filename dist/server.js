@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../dist/index");
+const index_1 = require("./index");
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 app.get('/mostlikelyresults/:numberOfResultsToReturn', (req, res) => {
@@ -17,9 +17,9 @@ app.get('/mostlikelyresults/:numberOfResultsToReturn', (req, res) => {
     }
 });
 app.get('/uniquecompetitors', (req, res) => {
-    const uniqueCompetitorsSet = req.getUniqueCompetitors(index_1.myEvents);
+    const uniqueCompetitorsSet = (0, index_1.getUniqueCompetitors)(index_1.myEvents);
     const sortedUniqueCompetitorsSet = (0, index_1.sortSet)(uniqueCompetitorsSet);
-    res.status(200).json(sortedUniqueCompetitorsSet);
+    res.status(200).send(sortedUniqueCompetitorsSet);
 });
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
